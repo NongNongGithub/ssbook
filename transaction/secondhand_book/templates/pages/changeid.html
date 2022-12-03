@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改用户名</title>
+    <style>
+
+        .form-item
+        { 
+            width: 200px;
+            height: 50px; 
+            border: 0; 
+            border-radius: 25px; 
+            font-size: 18px; 
+            color: #020604; 
+            outline: none; 
+            cursor: pointer; 
+            background-color:#C1C1C1;;
+            margin-left: 120px;
+            margin-top:0px;
+        }
+       .dowebok 
+        { position: absolute; 
+            left: 50%; 
+            top: 60%; 
+            width: 430px; 
+            height: 400px; 
+            margin: -300px 0 0 -215px; 
+            border: 1px solid #fff; 
+            border-radius: 20px; 
+            overflow: hidden;  
+            background: rgba(104, 109, 109, 0.432);
+        }
+        input
+        {
+            width: 200px;
+            font-family: "Lucida Grande","Lucida Sans Unicode",Tahoma,Sans-Serif;
+            padding: 5px;
+            font-size: 0.9em;
+            border-radius: 5px;
+            background: rgba(108, 83, 83, 0.07);
+        }
+
+        div
+        {
+            margin: 0 0 15px 0;
+            border : none;
+	    }
+        .newpsd-new
+        {
+            font-size:18px;
+            display: inline-block;
+            width: 100%;
+            text-align: left;
+            margin-left: 115px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .newpsd-con
+        {
+            font-size:18px;
+            display: inline-block;
+            width: 100%;
+            text-align: left;
+            margin-left: 115px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .logo 
+        { 
+            width: 250px; 
+            height: 80px; 
+            margin: 10px auto 10px;
+            font-size:25px;
+            padding: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="dowebok">
+        <div class="logo">修改用户名</div>
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <div>
+                 <label class="newpsd-new">
+                   <input type="text" placeholder="输入现在的用户ID" id="emil" name="oldname"></input>
+                </label>
+                <label class="newpsd-con">
+                     <input type="text" placeholder="请设置新ID" id="emil" name="newname"></input>
+                </label>
+            </div>
+            <div class="form-item">
+                <input type="submit" id="submit" value="确 认"></input>
+            </div>
+        </form>
+    </div>
+{% if user_id_change_failed_msg %}
+    <script>
+        alert("{{ user_id_change_failed_msg }}");
+    </script>
+{% endif %}
+{% if user_id_same_msg %}
+    <script>
+        alert("{{ user_id_same_msg }}")
+    </script>
+{% endif %}
+</body>
+</html>

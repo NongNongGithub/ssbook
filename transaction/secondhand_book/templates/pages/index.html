@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+<body style="margin-top: 0;">
+    <div class="main">
+        <div class="leftSidebar">
+            <a href="../homepage"><div class="indexGoods">商品</div></a>
+            <a href="../person_info"><div class="indexPersonIfo">个人信息</div></a> 
+            <a href="../mygoods"><div class="indexMyGoods">我的商品</div></a>
+        </div>
+        <div class="rightSidebar">
+            <div class="rightUp">
+                <div class="indexSearch">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <input class="keyword" type="text" name="keyword">
+                        <input class="buttonSearch" type="submit" name="search" value="搜索"></input>
+                    </form>
+                </div>
+            </div>
+            <ul class="goodsList">
+                {% for goods in goods_list %}
+                    <li class="goodsItem">
+                        <a href="../goods_detail&id={{ goods.commodity_id }}" target="_blank">
+                            <img class="itemImg" data-rewrite="{width:'468',height: '468'}" src="/static/homepage/{{ goods.picture }}">
+                            <div class="itemTitle"> {{ goods.commodity_name }} </div>
+                            <div class="itemPrice">¥ {{ goods.price }} </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>
